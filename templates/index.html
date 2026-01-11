@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to Pencil Sketch App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Image to Pencil Sketch Converter</h1>
+        <p>Upload an image and convert it into a pencil sketch.</p>
+        <form action="/" method="post" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Upload and Convert</button>
+        </form>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if original_image %}
+        <div class="result">
+            <div>
+                <h2>Original Image</h2>
+                <img src="{{ original_image }}" alt="Original Image">
+            </div>
+            <div>
+                <h2>Pencil Sketch</h2>
+                <img src="{{ sketch_image }}" alt="Pencil Sketch">
+
+                <br><br>
+                <a href="{{ url_for('static', filename='results/' + sketch_filename) }}"
+                    download
+                    class="download-btn"> Download Sketch
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
