@@ -13,13 +13,13 @@ def pencil_sketch_image(input_path, output_path):
     inverted_image = cv2.bitwise_not(gray_image)
 
     # Apply Gaussian blur
-    blurred_image = cv2.GaussianBlur(inverted_image, (21, 21), 0)
+    blurred_image = cv2.GaussianBlur(inverted_image, (35, 35), 0)
 
     # Invert the blurred image
     inverted_blurred = cv2.bitwise_not(blurred_image)
 
     # Create the sketch by blending the grayscale image with the inverted blurred image
-    pencil_sketch = cv2.divide(gray_image, inverted_blurred, scale=256.0)
+    pencil_sketch = cv2.divide(gray_image, inverted_blurred, scale=220.0)
 
     # Save the sketch image
     cv2.imwrite(output_path, pencil_sketch)
